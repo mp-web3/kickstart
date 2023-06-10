@@ -11,9 +11,10 @@ const output = solc.compile(source, 1).contracts; /* The output will contain 2 o
 
 fs.ensureDirSync(buildPath); /*ensureDir check to see if a directory already exist before creating it */
 
-for (let contract in output) {
+console.log(output);
+for (let contract in output) { /* Iterate over the 2 contracts, contract is the key of the objects contained in output */
     fs.outputJsonSync(
-        path.resolve(buildPath, contract + '.json'),
+        path.resolve(buildPath, contract.replace(':', '') + '.json'),
         output[contract]
     );
 }
