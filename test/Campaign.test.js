@@ -74,4 +74,40 @@ describe('Campaigns', () => {
         const request = await campaign.methods.requests(0).call();
         assert.equal('Buy batteries', request.description);
     });
+
+    //Final test 
+
+    it('Contribute, Create a request, Approve request, Finalize request, Check the other party received the money', async () => {
+        // Contribute
+        await campaign.methods.contribute().send({
+            from: accounts[1],
+            value: web3.utils.toWei('10', 'ether')
+        });
+
+        // Create a request
+        await campaign.methods
+            .createRequest('Buy some good stuff', web3.utils.toWei('5', 'ether'), accounts[2])
+            .send({
+                from: accounts[0],
+                gas: '1000000'
+            });
+        
+        // Approve request
+        await campaign.methods.approveRequest(0).send({
+            from: accounts[1],
+            gas: '1000000'
+        });
+
+        await campaign.methods.finalizeRequest(0).send({
+            from: accounts[0],
+            gas: '1000000'
+        });
+
+        let receiverBalance = await web3.eth.getBalance(accounts[2]);
+        receiverBalance = web3.utils.fromWei(receiverBalance, 'ether');
+        receiverBalance = parseFloat(receiverBalance);
+        console.log(receiverBalance);
+        assert(receiverBalance > 105);
+    });
 });
+
