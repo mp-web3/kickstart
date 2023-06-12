@@ -13,7 +13,7 @@ let campaignAddress;
 let campaign;
 
 beforeEach(async () => {
-    accounts = await web3.eth.getAccounts();
+    accounts = await web3.eth.getAccounts(); //Ganache generate by default 10 accounts
 
     factory = await new web3.eth.Contract(JSON.parse(compiledFactory.interface))
         .deploy({ data: compiledFactory.bytecode })
@@ -41,5 +41,14 @@ describe('Campaigns', () => {
     it('marks caller as the campaign manager', async () => {
         const manager = await campaign.methods.manager().call(); //we did not create a get function for manager in our contract but that is not necessary because whenevere we mark as public a variable a get function is automatically created
         assert.equal(accounts[0], manager);
+    });
+
+    it('allows people to contribute money and marks them as approvers', async () => {
+        await campaign.methods.contribute().send({
+            value: '200',
+            from: accounts[1]
+        });
+        const isContributor = await campaign.methods.approvers(accounts[1]).call()
+        assert(isContributor);
     });
 });
