@@ -31,3 +31,10 @@ beforeEach(async () => {
         campaignAddress // and we save the address
     );
 });
+
+describe('Campaigns', () => {
+    it('deploys a factory and a campaign', () => {
+        assert.ok(factory.options.address);
+        assert.ok(campaign.options.address);
+    });
+});
