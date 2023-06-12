@@ -24,5 +24,10 @@ beforeEach(async () => {
         gas: '1000000' // and the gas
     });
 
-    await factory.methods.getDeployedCampaigns().call(); // this will return an array of addressess of all the campaigns deployed through the facrtory
+    const addresses = await factory.methods.getDeployedCampaigns().call(); // this will return an array of addressess of all the campaigns deployed through the facrtory
+    campaignAddress = addresses[0];
+    campaign = await new web3.eth.Contract( // Instance of our campaign with 2 arguments, the interface and the address
+        JSON.parse(compiledCampaign.interface), //we have already deployed the campaign before through the factory, so we just need to make it readable
+        campaignAddress // and we save the address
+    );
 });
