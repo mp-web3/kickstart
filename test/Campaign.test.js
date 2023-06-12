@@ -37,4 +37,9 @@ describe('Campaigns', () => {
         assert.ok(factory.options.address);
         assert.ok(campaign.options.address);
     });
+
+    it('marks caller as the campaign manager', async () => {
+        const manager = await campaign.methods.manager().call(); //we did not create a get function for manager in our contract but that is not necessary because whenevere we mark as public a variable a get function is automatically created
+        assert.equal(accounts[0], manager);
+    });
 });
