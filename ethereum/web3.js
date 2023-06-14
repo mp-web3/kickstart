@@ -1,7 +1,13 @@
 import Web3 from 'web3';
 
-window.ethereum.request({ method: 'eth_requestAccounts' });
+const getWeb3 = () => {
+  if (typeof window !== 'undefined' && window.ethereum) {
+    window.ethereum.request({ method: 'eth_requestAccounts' });
+    return new Web3(window.ethereum);
+  }
+  // Handle the case where the user doesn't have MetaMask installed
+  // Perhaps show them a message prompting them to install MetaMask
+  return null;
+};
 
-const web3 = new Web3(window.ethereum);
-
-export default web3;
+export default getWeb3;
