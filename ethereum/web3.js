@@ -10,7 +10,7 @@ if (typeof window !== "undefined" && typeof window.ethereum !== "undefined") {
 } else {
   // We are on the server *OR* the user is not running metamask
   const provider = new Web3.providers.HttpProvider(
-    process.env.ALCHEMY_URL //This is the node I already set up to deploy the contract (look into .env)
+    process.env.INFURA_URL //This is the node I already set up to deploy the contract (look into .env)
   );
   web3 = new Web3(provider);
 }

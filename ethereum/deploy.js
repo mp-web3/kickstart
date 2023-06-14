@@ -5,7 +5,7 @@ const compiledFactory = require('./build/Factory.json');
 
 const provider = new HDWalletProvider(
   process.env.MNEMONIC,
-  process.env.ALCHEMY_URL
+  process.env.INFURA_URL
 );
 const web3 = new Web3(provider);
 
