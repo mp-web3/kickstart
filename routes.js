@@ -1,6 +1,7 @@
 const routes = require('next-routes')();
 
 // This is how we tell routes what component to show at a certain url
+routes.add('/campaigns/new', 'campaigns/new');
 routes.add('/campaigns/:address', '/campaigns/show');
 
 module.exports = routes;
