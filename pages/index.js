@@ -34,7 +34,7 @@ class CampaignIndex extends Component {
             primary={true}
             />
           {this.renderCampaigns()}
-        </div>;
+        </div>
       </Layout>
     )
   }
