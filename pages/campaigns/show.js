@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Layout from '../../components/Layout';
 import campaignInstance from '../../ethereum/campaign';
 import { Card } from 'semantic-ui-react';
+import web3 from '../../ethereum/web3';
 
 
 class CampaignShow extends Component {
@@ -50,6 +51,26 @@ class CampaignShow extends Component {
                 meta:'Address of the Campaign Manager',
                 description: 'The manager created the campaign and can create requests',
                 style: { overflowWrap: 'break-word'}
+            },
+            {
+                header: minimumContribution,
+                meta: 'Minimum Contribution (wei)',
+                description: 'You must contribute at least this much wei to become an approver'
+            },
+            {
+                header: requestsCount,
+                meta: 'Number of Requests',
+                description: 'A request tries to withdraw money from the contract. Requests must be approved by contract manager'
+            },
+            {
+                header: approversCount,
+                meta: 'Number of Approvers',
+                description: 'Number of people who have already donated to campaign'
+            },
+            {
+                header: web3.utils.fromWei(balance, 'ether'),
+                meta: 'Campaign Balance (ether)',
+                description: 'The balance is how much money of this campaign is left to spend'
             }
         ];
 
