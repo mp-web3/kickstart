@@ -5,6 +5,7 @@ import campaignInstance from '../../ethereum/campaign';
 
 class CampaignShow extends Component {
     static async getInitialProps(props) {
+        // Create an instace of the campaign at (address)
         const campaign = campaignInstance(props.query.address);
 
         const summary = await campaign.methods.getSummary().call();
