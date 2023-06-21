@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
-import { Card } from 'semantic-ui-react';
 import Layout from '../../components/Layout';
+import campaignInstance from '../../ethereum/campaign';
+
 
 class CampaignShow extends Component {
     static async getInitialProps(props) {
-        const campaignAddress = props.query.address;
-        return {campaignAddress};
+        const campaign = campaignInstance(props.query.address);
+
+        const summary = await campaign.methods.getSummary().call();
+
+        console.log(summary);
+
+        return{};
     }
 
 
@@ -13,7 +19,6 @@ class CampaignShow extends Component {
         return (
             <Layout>
                 <h3>Campaign Details</h3>
-                <p>Address: {this.props.campaignAddress}</p>
 
             </Layout>
         );
