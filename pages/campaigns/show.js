@@ -10,9 +10,25 @@ class CampaignShow extends Component {
 
         const summary = await campaign.methods.getSummary().call();
 
-        console.log(summary);
+        //console.log(summary);
+        /* The following is what we get in our terminal if we console.log the summary
+        Result {
+            '0': '100',
+            '1': '0',
+            '2': '0',
+            '3': '0',
+            '4': '0x9c03Ce240E2D6EEB70B7Ebe73B1289EF4ecBF5A6'
+        }
+        */
+       // Now we want to pass down to our components, individual props instead of the entire object summary
 
-        return{};
+        return{
+            minimumContribution: summary[0],
+            balance: summary[1],
+            requestsCount: summary[2],
+            approversCount: summary[3],
+            manager: summary[4]
+        };
     }
 
 
