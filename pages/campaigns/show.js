@@ -26,6 +26,7 @@ class CampaignShow extends Component {
        // Now we want to pass down to our components, individual props instead of the entire object summary
 
         return{
+            address: props.query.address, //we need to pass down the address to the ContributeForm component
             minimumContribution: summary[0],
             balance: summary[1],
             requestsCount: summary[2],
@@ -88,7 +89,7 @@ class CampaignShow extends Component {
                         {this.renderCards()}
                     </Grid.Column>
                     <Grid.Column width={6}>
-                        <ContributeForm />
+                        <ContributeForm address={this.props.address} />
                     </Grid.Column>
                 </Grid>
             </Layout>
