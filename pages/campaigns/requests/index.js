@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Grid } from 'semantic-ui-react';
+import { Button, Grid, Table } from 'semantic-ui-react';
 import Layout from '../../../components/Layout';
 import { Link } from '../../../routes';
 import campaignInstance from '../../../ethereum/campaign';
@@ -21,7 +21,12 @@ class RequestIndex extends Component {
     }
     
     render() {
+
+        // destructuring properties of Tabl
+        const { Header, Row, HeaderCell, Body } = Table;
+
         return (
+
             <Layout>
                 <Grid>
                     <Grid.Row>
@@ -37,8 +42,22 @@ class RequestIndex extends Component {
                             </Link>
                         </Grid.Column>
                     </Grid.Row>
-
                 </Grid>
+
+                <Table>
+                    <Header>
+                        <Row>
+                            <HeaderCell>ID</HeaderCell>
+                            <HeaderCell>Description</HeaderCell>
+                            <HeaderCell>Amount</HeaderCell>
+                            <HeaderCell>Recipient</HeaderCell>
+                            <HeaderCell>Approval Count</HeaderCell>
+                            <HeaderCell>Approve</HeaderCell>
+                            <HeaderCell>Finalize</HeaderCell>
+                        </Row>
+                    </Header>
+
+                </Table>
     
             </Layout>
 
