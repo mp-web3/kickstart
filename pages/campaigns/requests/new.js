@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Layout from '../../../../components/Layout';
+import Layout from '../../../components/Layout';
 import { Form, Button, Input, Message } from 'semantic-ui-react';
-import web3 from '../../../../ethereum/web3';
-import campaignInstance from '../../../../ethereum/campaign';
+import web3 from '../../../ethereum/web3';
+import campaignInstance from '../../../ethereum/campaign';
 
-class NewRequest extends Component {
+class RequestNew extends Component {
     static async getInitialProps(props) {
         return{
             address: props.query.address
@@ -85,4 +85,4 @@ class NewRequest extends Component {
     }
 }
 
-export default NewRequest;
+export default RequestNew;
