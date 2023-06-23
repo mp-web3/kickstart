@@ -3,6 +3,7 @@ import Layout from '../../../components/Layout';
 import { Form, Button, Input, Message } from 'semantic-ui-react';
 import web3 from '../../../ethereum/web3';
 import campaignInstance from '../../../ethereum/campaign';
+import { Link, Router } from '../../../routes';
 
 class RequestNew extends Component {
     static async getInitialProps(props) {
@@ -37,6 +38,8 @@ class RequestNew extends Component {
                 from: accounts[0]
             })
 
+            Router.pushRoute(`/campaigns/${this.props.address}/requests`)
+
         } catch (err) {
             this.setState({ errorMessage: err.message });
         }
@@ -46,6 +49,9 @@ class RequestNew extends Component {
     render() {
         return (
             <Layout>
+                <Link route={`/campaigns/${this.props.address}/requests`}>
+                    <a>All requests</a>
+                </Link>
                 <h3>Create a Request</h3>
                 <p>{this.props.address}</p>
                 <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
