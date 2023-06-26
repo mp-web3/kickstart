@@ -42,21 +42,13 @@ class RequestIndex extends Component {
         return (
 
             <Layout>
-                <Grid>
-                    <Grid.Row>
-                        <Grid.Column width={12}>
-                            <h3>Request List</h3>
-                        </Grid.Column>
 
-                        <Grid.Column width={4}>
-                            <Link route={`/campaigns/${this.props.address}/requests/new`}>
-                                <Button primary>
-                                    Add Request
-                                </Button>        
-                            </Link>
-                        </Grid.Column>
-                    </Grid.Row>
-                </Grid>
+                <h3>Request List</h3>
+                <Link route={`/campaigns/${this.props.address}/requests/new`}>
+                    <Button primary floated='right' style={{ marginBottom: 10 }}>
+                        Add Request
+                    </Button>        
+                </Link>
 
                 <Table>
                     <Header>
