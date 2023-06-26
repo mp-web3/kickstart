@@ -66,6 +66,8 @@ class RequestIndex extends Component {
                     <Body>{this.renderRows()}</Body>
 
                 </Table>
+
+                <div>Found {this.props.requestsCount} requests.</div>
     
             </Layout>
 
